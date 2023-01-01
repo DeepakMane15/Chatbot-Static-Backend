@@ -17,6 +17,8 @@
     "msnodesqlv8": "^2.6.0",
     "mssql": "^8.1.2",
     "node-cache": "^5.1.2",
+    "nodemailer": "^6.8.0",
+    "nodemailer-express-handlebars": "^6.0.0",
     "nodemon": "^2.0.19",
     "socket.io-client": "^4.5.2",
     "winston": "^3.8.1"
