@@ -1,7 +1,7 @@
 const { poolPromise } = require('../classes/dbConnection')
 
-const process = "ChatEnd";
-const ChatEnd = async (req, res) => {
+const process = "EndChat";
+const EndChat = async (req, res) => {
     try {
         console.log(process)
         const pool = await poolPromise
@@ -27,4 +27,4 @@ const ChatEnd = async (req, res) => {
         res.send({ status: 400, data: err, source: process })
     }
 }
-module.exports = { ChatEnd };
+module.exports = { EndChat };

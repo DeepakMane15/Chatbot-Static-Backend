@@ -6,7 +6,10 @@ var config = {
     driver:"msnodesqlv8",
     options:{
         trustedConnection:true
-    }
+    },
+    dialectOptions: {
+      options: { "requestTimeout": 300000 }
+    },
 };
 
 
