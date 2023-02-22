@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('generator:server');
 var http = require('http');
 
+
 /**
  * Get port from environment and store in Express.
  */
@@ -20,6 +21,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+const io = require('socket.io')(server, {cors: {origin : "*"}});
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -88,3 +90,40 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+io.on("connection", (socket) =>{
+  socket.on('join', (data) => {
+    console.log("from agent " + data)
+    socket.join(data)
+  })
+  // setInterval(() => {
+    // PVYmW8wZdJsXNNDcAAAY
+  //   console.log("sending reqs")
+  //   socket.emit("fetchChats","ab");
+  // }, 10000);
+
+  //end chat and fetch chats
+    socket.on('chatEnd', (data) => {
+      console.log('chatEnd ', data)
+      socket.to(data).emit("fetchChats",data);
+    })
+//fetch interations
+    socket.on('fetchInteractions',(data) => {
+      socket.to(data).emit("fetchChats",data);
+    })
+
+    socket.on("agentJoined", data => {
+      console.log("agentJoin " + JSON.stringify(data))
+      socket.to(data.room).emit("agentJoinedMessage", {agentId:data.agentId,agentName:data.agentName});
+    // socket.to(data.room).emit("getMessage", data.agentName);
+
+    })
+
+    //send message 
+   socket.on("sendMessage", (data) => {
+    console.log(data.room)
+    console.log("data + " + data.message)
+    socket.to(data.room).emit("getMessage", data.message);
+   })
+
+})

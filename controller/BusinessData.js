@@ -16,7 +16,7 @@ const BusinessData = async (req, res) => {
         const query = `EXEC CHATBOT_StartupMessages @ActionFlag = 'FETCH', @BID = '${req.body.bid}'`
 
         let response = request.query(query, function (err, result) {
-            console.log(result.recordsets[0]);
+            // console.log(result.recordsets[0]);
             if (err) {
                 console.log(err)
                 return res.send({ status: 400, data: err, source: process })

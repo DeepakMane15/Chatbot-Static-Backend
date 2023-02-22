@@ -3,12 +3,11 @@ const { poolPromise } = require('../classes/dbConnection')
 const process = "GetChats";
 const GetChats = async (req, res) => {
     try {
-        console.log(process)
         const pool = await poolPromise
         const request = await pool.request();
 
         const query = `EXEC CHATBOT_Chats @ACTIONFLAG='FETCHCHATS', @bid=${req.body.bid}`;
-
+        // console.log(query)
         request.query(query, function (err, result) {
 
             if (err) {
