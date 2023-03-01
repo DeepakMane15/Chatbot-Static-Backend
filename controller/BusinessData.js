@@ -14,7 +14,7 @@ const BusinessData = async (req, res) => {
         const request = await pool.request();
 
         const query = `EXEC CHATBOT_StartupMessages @ActionFlag = 'FETCH', @BID = '${req.body.bid}'`
-
+        console.log(query)
         let response = request.query(query, function (err, result) {
             // console.log(result.recordsets[0]);
             if (err) {

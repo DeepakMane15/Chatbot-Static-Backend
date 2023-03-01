@@ -52,8 +52,16 @@ const BusinessVerification = async (req, res) => {
             const business = req.body.business;
             const agent = req.body.agent;
             const configuration = req.body.configuration;
+            const startupMessage = req.body.startupMessage;
             const query = `EXEC CHATBOT_Businesses @ActionFlag='ADD',@name='${business.clientName}',@location='${business.location}',@businessType='${business.businessType}',@chatbotType='${business.chatbotType}',@agentSupport='${business.agentSupport}',
-            @firstName ='${configuration.rootName}',@username ='${configuration.rootUsername}',@password ='${configuration.rootPassword}',@noResponseTimeout ='${configuration.noResponseTimeout}', @timeoutMessage ='${configuration.timeoutMessage}', @inputParameters ='${configuration.inputParameters}', @routeMessage ='${configuration.routeMessage}', @agentJoinMessage='${configuration.agentJoinMessage}'
+            @firstName ='${agent.rootName}',@username ='${agent.rootUsername}',@password ='${agent.rootPassword}',@noResponseTimeout ='${configuration.NoResponseTimeout}', @timeoutMessage ='${configuration.NoResponseTimeoutMessage}', @inputParameters ='${configuration.InputParameters}', @routeMessage ='${configuration.RouteMessage}', @agentJoinMessage='${configuration.AgentJoinMessage}', @message ='${startupMessage.message}',
+            @message1 ='${startupMessage.node2Message}',
+            @hasButtons ='${startupMessage.hasButtons}',
+            @buttonValues ='${startupMessage.buttonValues}',
+            @buttonValues2 ='${startupMessage.buttonValues2}',
+            @keyboardInput ='${startupMessage.keyboardInput}', 
+            @expectedInput ='${startupMessage.expectedInput}', 
+            @defaultResponse ='${startupMessage.defaultResponse}'
 `
 
             console.log(query)
