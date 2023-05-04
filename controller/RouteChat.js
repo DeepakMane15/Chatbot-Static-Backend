@@ -4,13 +4,12 @@ const process = "RouteChat";
 const RouteChat = async (req, res) => {
     try {
         console.log("RouteChat")
+        console.log("first ", req.body.data)
         const pool = await poolPromise
         const request = await pool.request();
 
         if (req.body.ActionFlag == 'ADD') {
 
-            // const AgentId = await AgentAllocation({ bid: req.body.bid }).then()
-            // console.log(AgentId)
             const query1 = `EXEC CHATBOT_Interactions @ActionFlag = 'ALLOCATION', @bid = ${req.body.bid}`
             // console.log(query1)
             await request.query(query1, function (err, result1) {

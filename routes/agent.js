@@ -4,7 +4,7 @@ const { Agent } = require('../controller/Agent');
 const { BusinessConfigurations } = require('../controller/BusinessConfigurations');
 const { BusinessData } = require('../controller/BusinessData');
 const { BusinessVerification } = require('../controller/BusinessVerification');
-const { EndChat } = require('../controller/EndChat');
+const { EndChat, EndChatByAgent } = require('../controller/EndChat');
 const { GetChats } = require('../controller/GetChats');
 const { Interactions } = require('../controller/Interactions');
 const { MarkChatRead } = require('../controller/MarkChatRead');
@@ -23,6 +23,7 @@ router.post('/BusinessData', BusinessData)
 router.post('/BusinessVerification', BusinessVerification)
 router.post('/StaticAutoResponse', StaticAutoResponse)
 router.post('/EndChat', EndChat)
+router.post('/EndChatByAgent', EndChatByAgent)
 router.post('/SendEmail', SendEmail)
 router.post('/GetChats',GetChats )
 router.post('/MarkChatRead',MarkChatRead )

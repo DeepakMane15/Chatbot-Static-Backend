@@ -93,7 +93,7 @@ function onListening() {
 
 io.on("connection", (socket) =>{
   socket.on('join', (data) => {
-    console.log("from agent " + data)
+    console.log("from agent login " + data)
     socket.join(data)
   })
   // setInterval(() => {
@@ -109,6 +109,7 @@ io.on("connection", (socket) =>{
     })
 //fetch interations
     socket.on('fetchInteractions',(data) => {
+      console.log('fetchInteractions', data)
       socket.to(data).emit("fetchChats",data);
     })
 
@@ -124,6 +125,12 @@ io.on("connection", (socket) =>{
     console.log(data.room)
     console.log("data + " + data.message)
     socket.to(data.room).emit("getMessage", data.message);
+   })
+
+   //agentChatENd
+   socket.on("agentChatEnd", (data) => {
+    console.log("in agentChatEnd", data.room )
+    socket.to(data.room).emit("agentChatEndMessage");
    })
 
 })
